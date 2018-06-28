@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Try...using(...)...Catch...</Title>
+			<Shortcut>trycu</Shortcut>
+			<Description>Code snippet for simple try using catch throw.</Description>
+			<Author>runerback</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>type</ID>
+					<ToolTip>IDisposable Object</ToolTip>
+					<Default>IDisposable</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+				<![CDATA[try
+            {
+                using ($type$ $end$ = new $type$())
+                {
+					
+                }
+            }
+            catch
+            {
+                throw;
+            }]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

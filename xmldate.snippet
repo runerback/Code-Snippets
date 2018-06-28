@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>xmldate</Title>
+			<Shortcut>xmldate</Shortcut>
+			<Description>Nulable DateTime property in xml model.</Description>
+			<Author>runerback</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>property</ID>
+					<ToolTip>Property name</ToolTip>
+					<Default>MyProperty</Default>
+				</Literal>
+				<Literal>
+					<ID>format</ID>
+					<ToolTip>Datetime string format</ToolTip>
+					<Default>yyyy/MM/dd hh:mm:ss</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+				<![CDATA[[XmlIgnore]
+					public Nullable<DateTime> $property$ { get; set; }
+					$end$
+					[XmlElement("$property$")]
+					public string $property$AsString
+					{
+						get
+						{
+							if (this.$property$ == null)
+							{
+								return null;
+							}
+							else
+							{
+								return ((DateTime)this.$property$).ToString("$format$");
+							}
+						}
+						set
+						{
+							DateTime temp = DateTime.MinValue;
+							DateTime.TryParseExact(
+								value, 
+								"$format$", 
+								System.Globalization.CultureInfo.InvariantCulture, 
+								System.Globalization.DateTimeStyles.None, 
+								out temp);
+							if (temp == DateTime.MinValue)
+							{
+								this.$property$ = null;
+							}
+							else
+							{
+								this.$property$ = temp;
+							}
+						}
+					}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
